@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Ejercicio 1</title>
+</head>
+<body>
+
+	<!-- Realiza un script que escriba en el documento la fecha y hora actual. La salida deberá tener el siguiente formato:
+	Hoy es martes, 28 de Febrero de 2018 y son las 14:32 horas.. -->
+
+	<script type="text/javascript">
+		
+		
+		var fecha = new Date();	// Creamos array de la fecha actual, con solo poner esto, tenemos un array con todos los valores de fecha,
+
+		var dia = (fecha.getDate()); // Con getDate obtenemos el dia del array fecha
+
+		// Ahora para el mes uso getMonth pero esto da un valor de 0 a 11, donde cero es enero y 11 diciembre, 
+		//por tanto creo un array con los nombres de los meses, y una variable llamada mes,
+		// y con arrayMeses[fecha.getMonth()], me dice del arrayMeses el mes actual segun el array fecha,
+		// asi me da le nombre y no el numero
+
+		var arrayMeses =["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+		var mes = arrayMeses[fecha.getMonth()];
+
+		var ano = (fecha.getFullYear()); // Con getFullYear obtenemos el año del array fecha
+
+		// Para el nombre de los dias de la semana ocuure lo mismo que con los meses, con getDay obtenemos un numero del 0 al 6
+		// donde cero es el domingo y 6 el sabado, por tanto, hacemos lo mismo, creamos array con los nombres
+		// y una variable llamada diaSemana para obtener el nombre
+
+		var arrayDiasSemana =["Lunes","Martes","Miercoles","Jueves","Viernes","Sábado","Domingo"];
+		var diaSemana = arrayDiasSemana[fecha.getDay()];
+
+		// Aqui obtengo las horas
+		var horas = (fecha.getHours());
+
+		// y los minutos
+
+		var minutos = (fecha.getMinutes());
+
+		document.write("Hoy es " + diaSemana + ", " + dia + " de " + mes + " de " + ano + " y son las " + horas + ":" + minutos + " horas." );
+		document.write("<br>");	
+	
+	</script>
+		
+	
+</body>
+</html>

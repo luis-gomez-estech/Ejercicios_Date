@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Ejercicio 5</title>
+
+	<style type="text/css">
+
+		/* estilos del RELOJ */
+
+			body {
+				background: #000 !important;
+			}
+
+			#reloj{
+		    background:#222;
+		    font-size:40px;
+		    color:#fff;
+		    padding: 0px 20px 0px 20px;
+			}
+
+			.modal-title {
+				color: #fff;
+			}
+
+
+	</style>
+
+	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
+</head>
+<body >
+
+	<!-- Realiza un script que pida una fecha y muestre tres fechas que sean la fecha introducida a 30, 60 y 90 días.-->
+
+
+	<!-- Creo un div donde va a aparecer el reloj y le pongo dentro de un modal de bootstrap, para centrarlo y con estilos le de dado color -->
+
+
+	<!-- Modal -->
+	
+	<div class="modal-dialog modal-dialog-centered" role="document">
+	  
+	     <div class="modal-header">
+	       	<h5 class="modal-title" id="exampleModalCenterTitle">Hora actual</h5>        
+	    </div>      
+	     
+	    <div id="reloj"></div>
+	      	
+	</div>  	
+	
+
+	<script type="text/javascript">	
+
+	// despues de probar varias opciones, he usado un metodo para poder llamarlo cada cierto tiempo, a traves de setTimeout, 
+
+	relojActualiza(); // iniciamos llamando a la funcion relojActualiza
+		
+ 	function relojActualiza(){ 
+
+	    var estadoInicial = new Date() // Aqui recojo la fecha actual(incluido horas, minutos y segundos, por tanto, puedo obtener cada valor con get
+
+	    var horas = estadoInicial.getHours() // obtengo horas
+
+	    var minutos = estadoInicial.getMinutes() // Minutos
+	    
+	    var segundos = estadoInicial.getSeconds() // segundos
+
+	    var resultado = horas + " : " + minutos + " : " + segundos // aqui recojo concatenado cada valor
+
+    // ahora pensaba que con document.write funcionaba pero no, y he llevado el resultado al body con document.getElementById("demo").innerHTML 
+
+    document.getElementById("reloj").innerHTML = resultado;
+
+    // Por ultimo la clave es setTimeout el cual cada segundo llama a la funcion de nuevo, lo calcula y lo imprime y asi cada sg
+    // Por cierto, es necesario que este al final para que una vez imprima, se actualice y asi
+
+    setTimeout("relojActualiza()",1000)
+}
+
+	</script>
+		
+	
+</body>
+</html>
+

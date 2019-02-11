@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Ejercicio 4</title>
+</head>
+<body>
+
+	<!-- Realiza un script que pida una fecha y muestre tres fechas que sean la fecha introducida a 30, 60 y 90 días.-->
+
+	<script type="text/javascript">
+
+		// A la hora de introducir valores, hago ciertas validaciones con do while, tanto para comprobar que lo introducido es un numero como de que tenga un formato 
+		// del  1 al 31 para los dias o del 1 al 12
+
+	do{
+		
+	 	var dia = parseInt(prompt("Introduce el dia")); // añado parseInt para que lo convierta en numeros, sino como string no funciona bien
+
+	 	if(isNaN(dia)){
+	 		alert("Deber introducer un valor numerico")
+	 	} else if(dia<=0||dia>31){
+
+	 	alert("Debes introducir un numero del 1 al 31")
+	}
+
+	} while(isNaN(dia)||dia<=0||dia>31);
+
+	do{
+	  	var mes = parseInt(prompt("Introduce el mes"));
+
+	  	if(isNaN(mes)){
+	 		alert("Deber introducer un valor numerico")
+	 	}
+
+ 		if(mes<=0||mes>12){
+	 		alert("Debes introducir un numero del 1 al 12")
+	 	}
+
+	} while(isNaN(mes)||mes<=0||mes>12);
+
+	do {
+	
+	    var ano = parseInt(prompt("Introduce el año"));
+
+	    if(isNaN(ano)){
+	 		alert("Deber introducer un valor numerico")
+	 	}
+	} while(isNaN(ano));
+
+	// Una vez validado todo continuamos
+
+	// para el caso del mes, como Date() reconoce cero como enero y 11 como diciembre, tenemos que hacer esta conversion, y lo hago con swich
+  	// ya que el usuario si quiere introducer enero va a poner 1 y no cero, o si quiere diciembre va  aponer 12 y no 11
+
+  	switch (mes) {
+  		case 1: mesRectificado=0;
+  			break;
+  		case 2: mesRectificado=1;
+  			break;
+  		case 3: mesRectificado=2;
+  			break;
+  		case 4: mesRectificado=3;
+  			break;
+  		case 5: mesRectificado=4;
+  			break;
+  		case 6: mesRectificado=5;
+  			break;
+  		case 7: mesRectificado=6;
+  			break;
+  		case 8: mesRectificado=7;
+  			break;
+  		case 9: mesRectificado=8;
+  			break;
+  		case 10: mesRectificado=9;
+  			break;
+  		case 11: mesRectificado=10;
+  			break;
+  		case 12: mesRectificado=11;
+  			break;
+  		
+  	}
+  	  
+  	  // ahora guardo en un array la fecha introducida
+
+    var fecha = new Date(ano, mesRectificado, dia);
+
+    // Ahora creo un nuevo array que recoge los mismo datos qe el array fecha, pero ademas le sumo 30 dias con set.Date
+       
+    var fecha30 = new Date(ano, mesRectificado, dia);
+        fecha30.setDate(fecha30.getDate()+30); // donde pone 30 son los dias que le sumamos,
+        // Si quisieramos sumarle meses en vez de dias, pondriamos: fecha30.setMonth(fecha30.getMonth()+30); y estariamos sumando 30 meses
+
+    // LO MISMO para 60 dias
+
+    var fecha60 = new Date(ano, mesRectificado, dia);
+        fecha60.setDate(fecha60.getDate()+60);
+
+    // LO MISMO para 90 dias
+
+    var fecha90 = new Date(ano, mesRectificado, dia);
+        fecha90.setDate(fecha90.getDate()+90);  
+
+        // Ahora imprimo todo y uso alert, para que me vaya dando avisos de error al introducir datos  
+
+        alert("La fecha introducida es: " + fecha.getDate()+ "/" + (fecha.getMonth()+1) + "/" + fecha.getFullYear() )
+      
+        alert("La fecha a 30 dias es: " + fecha30.getDate()+ "/" + (fecha30.getMonth()+1) + "/" + fecha30.getFullYear() )
+      
+        alert("La fecha a 60 dias es: " + fecha60.getDate()+ "/" + (fecha60.getMonth()+1) + "/" + fecha60.getFullYear() )
+      
+        alert("La fecha a 90 dias es: " + fecha90.getDate()+ "/" + (fecha90.getMonth()+1) + "/" + fecha90.getFullYear() )
+
+	</script>
+		
+	
+</body>
+</html>
+
+<!--     // Creo las variables que van a recoger el numero introducido mas 30 dias, mas 60 y mas 90, lo que hago es sumarle a la variable dia, pues eso, 30,60 y 90 dias mas en cada caso
+    var dias30=dia + 30;
+    var dias60=dia + 60;
+    var dias90=dia + 90;
+
+    // y ahora creo tres arrays, que recojen el valor a 30,60 y 90 dias    
+
+    var fecha30= new Date(ano, mes, dias30); //donde el año y el mes en cada caso, lo dejo sin añadir nada mas a lo que tenia,
+    // para que me lo cambie automaticamente segun la funcion Date(),
+
+    // AHORA obtengo
+
+    var dia30=fecha30.getDay();
+    var mes30=fecha30.getMonth();
+    var ano30=fecha30.getFullYear();
+
+    var fecha60= new Date(ano, mes, dias60); 
+
+    var dia60=fecha60.getDay();
+    var mes60=fecha60.getMonth();
+    var ano60=fecha60.getFullYear();
+
+    var fecha90= new Date(ano, mes, dias90); 
+
+    var dia90=fecha90.getDay();
+    var mes90=fecha90.getMonth();
+    var ano90=fecha90.getFullYear();
+
+   
+    // Imprimo
+
+    document.write("La fecha introducida es: " + diaActual + "/" + mesActual + "/" + anoActual + "<br>") // aqui le añado toDateString para un formato mas legible
+    document.write("<br>")
+    document.write("La fecha a 30 dias es: " + dia30 + "/" + mes30 + "/" + ano30 + "<br>")
+    document.write("<br>")
+    document.write("La fecha a 60 dias es: " + dia60 + "/" + mes60 + "/" + ano60 + "<br>")
+    document.write("<br>")
+    document.write("La fecha a 90 dias es: " + dia90 + "/" + mes90 + "/" + ano90 + "<br>")
+    document.write("<br>")
+  
+  
+
+  -->

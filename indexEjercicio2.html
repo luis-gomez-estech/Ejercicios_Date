@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Ejercicio 2</title>
+</head>
+<body>
+
+	<!-- Realiza un script que pida un nombre y dos apellidos e indique el tiempo que se tardó en introducir los datos. La salida sería algo así como : En introducir Luís Perez Alonso ha tardado 25 segundos. -->
+
+	<script type="text/javascript">
+		
+	// Primero creamos un array de fecha actual para que nos diga la fecha desde que se puede empezar a escribir,
+    // por eso lo ponemos antes del prompt
+
+    var fechaInicial = new Date();    
+
+   // ahora pedimos los datos   
+
+    var nombre = prompt("Introduce el Nombre");
+    var apellido1 = prompt("Introduce el primer apellido");
+    var apellido2 = prompt("Introduce el segundo apellido");
+
+    // Una vez introducidos, al dar a enter otro nuevo array va a guardar la fecha de ese momento
+
+    var fechaFinal =new Date()
+
+    var tarda = fechaFinal - fechaInicial; // Ahora comparamos la fecha final menos la inicial y nos da los milisegundos de diferencia
+
+   // Por tanto, creo la variable llamada sg, la cual la divido entre 1000 para convertirla en sg, y ademas con toFixed limito los decimales
+
+    var sgSinDecimales = (tarda/1000).toFixed(); // con toFixed, limitamos decimales, si no ponemos nada entre parentesis, entonces no ppone ningun decinal, si pusieramos 1,  pondria un decimal
+
+    // Por ultimo imprimo los rsultados
+     
+    alert("En introducir " + nombre + " " + apellido1 + " " + apellido2 + " ha tardado " + sgSinDecimales + " segundos")
+
+ 	
+	</script>
+		
+	
+</body>
+</html>
+

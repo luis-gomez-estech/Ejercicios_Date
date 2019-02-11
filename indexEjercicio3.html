@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Ejercicio 3</title>
+</head>
+<body>
+
+	<!-- Realiza un script pida un mes y año e imprima su calendario. No hace falta esmerarse en la presentación del calendario, el calendario simplificado puede ser del tipo:
+OCTUBRE – 2014
+1 (miercoles), 2 (jueves), ..... , 31 (viernes). -->
+
+	<script type="text/javascript">
+		
+		// A la hora de introducir valores, hago ciertas validaciones con do while, tanto para comprobar que lo introducido es un numero como de que el mes tenga un formato 
+		// del 1 al 12
+
+	
+	do{
+
+	  	var mes = parseInt(prompt("Introduce el mes"));
+
+		// Si no es un valor numerico, nos alerta
+	  	if(isNaN(mes)){
+	 		alert("Deber introducer un valor numerico")
+	 	}
+	 	// si el valor introducido esta fuera del rango 1-12,
+ 		if(mes<=0||mes>12){
+	 		alert("Debes introducir un numero del 1 al 12")
+	 	}
+
+	} while(isNaN(mes)||mes<=0||mes>12); // mientras ocurra eso seguira pidiendo el mes
+
+	do {
+	
+	    var ano = parseInt(prompt("Introduce el año"));
+	    // valido si es un nuemro o no
+	    if(isNaN(ano)){
+	 		alert("Deber introducer un valor numerico")
+	 	}
+
+	} while(isNaN(ano));
+
+	// Una vez validado todo continuamos
+
+	// para el caso del mes, como Date() reconoce cero como enero y 11 como diciembre, tenemos que hacer esta conversion, y lo hago con swich
+  	// ya que el usuario si quiere introducer enero va a poner 1 y no cero, o si quiere diciembre va  aponer 12 y no 11
+
+  	switch (mes) {
+  		case 1: mesRectificado=0;
+  			break;
+  		case 2: mesRectificado=1;
+  			break;
+  		case 3: mesRectificado=2;
+  			break;
+  		case 4: mesRectificado=3;
+  			break;
+  		case 5: mesRectificado=4;
+  			break;
+  		case 6: mesRectificado=5;
+  			break;
+  		case 7: mesRectificado=6;
+  			break;
+  		case 8: mesRectificado=7;
+  			break;
+  		case 9: mesRectificado=8;
+  			break;
+  		case 10: mesRectificado=9;
+  			break;
+  		case 11: mesRectificado=10;
+  			break;
+  		case 12: mesRectificado=11;
+  			break;
+  		
+  	}
+ 	  
+  	  // ahora guardo en un array el año y el mes introducido. Al no introducir un dia pone por defecto el a, osea, si ponemos fecha.getDate, es igual a 1
+
+	var fecha = new Date(ano, mesRectificado);
+
+	// Ahora para obtener la letra del dia de la semana, creo otro swich, por tanto tambien creo otra variable vacia que va a guaradr el dia de la semana en nombre
+	// asi dependiendo del valor que tenga fecha.getDay, va a pintar el nombre del dia
+
+	var diaSemanaRectificado=""; // creo un
+	
+	while(fecha.getMonth()==mesRectificado){	 
+
+  	   	switch (fecha.getDay()) {
+	  		case 0: diaSemanaRectificado="Domingo";
+	  			break;
+	  		case 1: diaSemanaRectificado="Lunes";
+	  			break;
+	  		case 2: diaSemanaRectificado="Martes";
+	  			break;
+	  		case 3: diaSemanaRectificado="Miercoles";
+	  			break;
+	  		case 4: diaSemanaRectificado="Jueves";
+	  			break;
+	  		case 5: diaSemanaRectificado="Viernes";
+	  			break;
+	  		case 6: diaSemanaRectificado="Sabado";
+	  			break;  	   					
+  		}
+ 	
+ 	// Ahora imprimimos el dia y el nombre del dia mientras no cambiemos de mes ya que al while le hemos dicho eso
+	
+	document.write(fecha.getDate() + " - (" + diaSemanaRectificado + ")<br>");
+	
+	fecha.setDate(fecha.getDate() + 1); // Aqui vamos sumando con setDate un dia mas al getDate inicial que empieza en 1, ya que getDate va desde a 31.(dependiendo del mes, Date() reconoce si son 30, 31 o 28 dias), y mientras el valor no se salga del mes que corresponde, y imprime, pero cuandos e alcance, dejara de imprimir
+	//por ejemplo para el mes de febrero en la primera vuelta fecha.getDate() es 1, para la segunda como le sumamos 1 con set
+	// pues valdra 2 y asi hasta que llegue a 28 ya que Date detecta en que mes estamos, por tanto mientras estemos entre 1 y 28 lo va a imprimir ya que le decimos
+	 // al while qu eientras fecha.getMonth()==mesRectificado, osea mientras el mes sea ese, va a imprimir los dias correspondientes al mes,
+}
+
+	</script>
+
+
+  
+
+
+<!--
+    var arrayMeses =["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+
+
+	    document.write(fecha.getDate() + fecha.getDay());
+ /*
+		for(j=1;j<=7;j++){
+
+			if (mesRectificado==0||mesRectificado==2||mesRectificado==4||mesRectificado==6||mesRectificado==7||mesRectificado==9||mesRectificado==11){
+				document.write((j+7) + diaSemana + " ");
+
+		}
+
+	}
+
+	 document.write("<br>");
+
+	for(j=1;j<=7;j++){
+
+			if (mesRectificado==0||mesRectificado==2||mesRectificado==4||mesRectificado==6||mesRectificado==7||mesRectificado==9||mesRectificado==11){
+				fecha.getDay()++;
+	switch (fecha.getDay()) {
+  		case 0: diaSemana="Domingo";
+  			break;
+  		case 2: diaSemana="Lunes";
+  			break;
+  		case 3: diaSemana="Martes";
+  			break;
+  		case 4: diaSemana="Miercoles";
+  			break;
+  		case 5: diaSemana="Jueves";
+  			break;
+  		case 6: diaSemana="viernes";
+  			break;
+  		case 7: diaSemana="Sabado";
+  			break;  		
+  	}
+  }
+
+
+
+
+				document.write((j+14) + diaSemana + " ");
+
+		}
+
+	
+
+		 document.write("<br>");
+
+		for(j=1;j<=7;j++){
+
+			if (mesRectificado==0||mesRectificado==2||mesRectificado==4||mesRectificado==6||mesRectificado==7||mesRectificado==9||mesRectificado==11){
+				document.write((j+21) + diaSemana + " ");
+
+		}
+
+	}
+
+
+*/
+
+
+	
+-->
+
+
+		
+	
+</body>
+</html>
+
